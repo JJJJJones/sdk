@@ -136,7 +136,7 @@ func (r *Client) getDashboard(ctx context.Context, path string) (Board, BoardPro
 	dec := json.NewDecoder(bytes.NewReader(raw))
 	dec.UseNumber()
 	if err := dec.Decode(&result.Board); err != nil {
-		return Board{}, BoardProperties{}, errors.Wrap(err, "unmarshal board")
+		return result.Board, bp, errors.Wrap(err, "unmarshal board")
 	}
 	return result.Board, bp, err
 }
