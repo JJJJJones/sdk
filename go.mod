@@ -2,7 +2,7 @@ module github.com/JJJJJones/sdk
 
 go 1.13
 
-replace github.com/grafana-tools/sdk => github.com/JJJJJones/sdk v0.0.0-20210714133701-11b1efc100c9
+replace github.com/grafana-tools/sdk => github.com/JJJJJones/sdk v0.0.0-20210728151813-5465e787c11f
 
 require (
 	github.com/chromedp/chromedp v0.7.3
