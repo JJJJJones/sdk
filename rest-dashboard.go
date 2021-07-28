@@ -171,7 +171,7 @@ func (r *Client) getRawDashboard(ctx context.Context, path string) ([]byte, Boar
 	if code != 200 {
 		return nil, BoardProperties{}, fmt.Errorf("HTTP error %d: returns %s", code, raw)
 	}
-	dec := json.NewDecoder(bytes.NewReader(raw))
+	dec := json.NewDecoder(strings.NewReader(string(raw)))
 	dec.UseNumber()
 	if err := dec.Decode(&result); err != nil {
 		return nil, BoardProperties{}, errors.Wrap(err, "unmarshal board")
