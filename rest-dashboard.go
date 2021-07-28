@@ -133,7 +133,7 @@ func (r *Client) getDashboard(ctx context.Context, path string) (Board, BoardPro
 			Board Board           `json:"dashboard"`
 		}
 	)
-	dec := json.NewDecoder(bytes.NewReader(raw))
+	dec := json.NewDecoder(strings.NewReader(string(raw)))
 	dec.UseNumber()
 	fmt.Printf("%v\n%s\n", raw, raw)
 	if err := dec.Decode(&result.Board); err != nil {
@@ -171,7 +171,7 @@ func (r *Client) getRawDashboard(ctx context.Context, path string) ([]byte, Boar
 	if code != 200 {
 		return nil, BoardProperties{}, fmt.Errorf("HTTP error %d: returns %s", code, raw)
 	}
-	dec := json.NewDecoder(strings.NewReader(string(raw)))
+	dec := json.NewDecoder(bytes.NewReader(raw))
 	dec.UseNumber()
 	if err := dec.Decode(&result); err != nil {
 		return nil, BoardProperties{}, errors.Wrap(err, "unmarshal board")
